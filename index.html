@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Problème du voyageur de commerce</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body onload="draw();">
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Entrer le poids de l'arête</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="poids">Poids de l'arête</label>
+                        <input type="number" id="poids" class="form-control" value="10">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm" type="button" class="btn btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="network-popUp">
+        <span id="operation">node</span>
+        <br>
+        <table style="margin:auto;">
+            <tr>
+                <td>id</td>
+                <td>
+                    <input id="node-id" value="new value" />
+                </td>
+            </tr>
+            <tr>
+                <td>label</td>
+                <td>
+                    <input id="node-label" value="new value" />
+                </td>
+            </tr>
+        </table>
+        <input type="button" value="save" id="saveButton" />
+        <input type="button" value="cancel" id="cancelButton" />
+    </div>
+    <div id="particles-js"></div>
+    <div class="container" id="projector">
+        <div class="row justify-content-center pt-4">
+            <h1>Problème du voyageur de commerce</h1>
+        </div>
+        <div class="row justify-content-center mb-3 mt-2">
+            <div class="col-md-8">
+                <div class="row mb-2">
+                    <div class="col-md-12" id="mynetwork"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <button class="btn btn-block btn-lg btn-outline-light" onclick="tsp();" id="articulation">
+                             Trouver le meilleur chemin
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-black bg-light mb-3" style="max-width: 18rem;opacity: 0.7;">
+                    <div class="card-header">Résultats:</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Brut force: <small>"Méthode exhaustive"</small></h5>
+                        <p class="card-text">Cout minimal: <b id="exhaustive"></b></p>
+                        <p class="card-text">Temps: <b id="exhaustive-time"></b></p>
+                        <hr />
+                        <h5 class="card-title">Back tracking: <small>"Méthode exhaustive"</small></h5>
+                        <p class="card-text">Cout minimal: <b id="vorace"></b></p>
+                        <p class="card-text">Temps: <b id="vorace-time"></b></p>
+                        <hr />
+                        <h5 class="card-title">Nearest neighbour: <small>"Méthode Vorace"</small></h5>
+                        <p class="card-text">Cout minimal: <b id="nn"></b></p>
+                        <p class="card-text">Temps: <b id="nn-time"></b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="config" style="display: none;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script src="network.js"></script>
+    <script src="./pvc.js"></script>
+    <script src="./ui.js"></script>
+</body>
